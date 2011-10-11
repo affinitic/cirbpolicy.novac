@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<import-steps>
+  <import-step id="Novac-install" version="20110926-01"
+               handler="cirbpolicy.novac.setuphandlers.setupNovac"
+               title="add Novac and urbis">
+             <dependency name="types"/>
+ </import-step>
+</import-steps> 
+
+ 

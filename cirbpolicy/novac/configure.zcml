@@ -1,0 +1,31 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
+    i18n_domain="cirbpolicy.novac">
+    
+  <five:registerPackage package="." initialize=".initialize" />
+
+  <!-- Include the sub-packages that use their own configure.zcml files. -->
+ 
+  
+  <!-- Register the installation GenericSetup extension profile -->
+  <genericsetup:registerProfile
+      name="default"
+      title="Novac Policy"
+      directory="profiles/default"
+      description="A policy for the nova citoyen plone module"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+  
+  <!-- -*- extra stuff goes here -*- -->
+
+
+  <include package="Products.LinguaPlone" />
+  <include package="cirb.cas" />
+  <include package="cirb.urbis" />
+  <include package="cirb.novac" />
+
+</configure>
