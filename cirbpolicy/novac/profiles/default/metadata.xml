@@ -6,5 +6,6 @@
 	<dependency>profile-cirb.cas:default</dependency>
 	<dependency>profile-cirb.urbis:default</dependency>
 	<dependency>profile-cirb.novac:default</dependency>
+	<dependency>profile-plonetheme.urbanisme:default</dependency>
   </dependencies>
 </metadata>
