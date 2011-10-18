@@ -28,5 +28,6 @@
   <include package="cirb.urbis" />
   <include package="cirb.novac" />
   <include package="plonetheme.urbanisme" />
+  <include package="cirb.footersitemap" />
 
 </configure>
