@@ -41,7 +41,7 @@ def setupNovac(context):
         img = novac.img
         portal_workflow.doActionFor(img,'publish')
         #alsoProvides(img, IHideFromBreadcrumbs)
-        
+        """
         from OFS.Image import File
         path = os.sep.join([get_package_path(),"img"])
         dir_list = os.listdir(path)
@@ -50,6 +50,6 @@ def setupNovac(context):
             img.invokeFactory(type_name='Image', id=filename)
             my_img = getattr(img,filename)
             my_img.setImage(imgfile)
-        
+        """
         logger = context.getLogger("Novac")
         logger.info('end install Novac')
