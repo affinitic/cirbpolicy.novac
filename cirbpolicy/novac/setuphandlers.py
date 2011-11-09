@@ -36,12 +36,12 @@ def setupNovac(context):
         alsoProvides(novac_nl, INovacView)
         portal_workflow.doActionFor(novac_nl,'publish')
         novac_nl.addTranslationReference(novac)
-        
+        """
         novac.invokeFactory(type_name='Folder', id='img', title='img',description="", excludeFromNav=True)
         img = novac.img
         portal_workflow.doActionFor(img,'publish')
         #alsoProvides(img, IHideFromBreadcrumbs)
-        """
+        
         from OFS.Image import File
         path = os.sep.join([get_package_path(),"img"])
         dir_list = os.listdir(path)
