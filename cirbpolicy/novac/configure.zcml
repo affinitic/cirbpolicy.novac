@@ -29,5 +29,6 @@
   <include package="cirb.novac" />
   <include package="plonetheme.urbanisme" />
   <include package="cirb.footersitemap" />
+  <include package="Products.Collage" />
 
 </configure>

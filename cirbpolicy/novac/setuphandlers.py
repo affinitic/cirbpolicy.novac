@@ -51,5 +51,38 @@ def setupNovac(context):
             my_img = getattr(img,filename)
             my_img.setImage(imgfile)
         """
+        folders = [{'fr':{'id':'lesreglesdujeu','name':'Les regles du jeu'},'nl':{'id':'spelregels','name':'Spelregels'}},
+                   {'fr':{'id':'quisommesnous','name':'Qui sommes-nous ?'},'nl':{'id':'wiezijnwij','name':'Wie zijn wij?'}},
+                   {'fr':{'id':'cartographie','name':'Cartographie'},'nl':{'id':'cartografie','name':'Cartografie'}},
+                   {'fr':{'id':'publications','name':'Etudes et Publications'},'nl':{'id':'publicaties','name':'Studies en publicaties'}}
+                ]
+
+        news = site.news
+        news.setExcludeFromNav(True)
+        
+        events = site.events
+        events.setExcludeFromNav(True)
+        
+        Members = site.Members
+        Members.setExcludeFromNav(True)
+        
+        for folder in folders:            
+            site.invokeFactory(type_name='Folder', 
+                                       id=folder['fr']['id'],
+                                       title=folder['fr']['name'],
+                                       description="",
+                                       language="fr")
+            f_fr = getattr(site, folder['fr']['id'])
+            portal_workflow.doActionFor(f_fr,'publish')
+        
+            site.invokeFactory(type_name='Folder', 
+                                          id=folder['nl']['id'],
+                                          title=folder['nl']['name'],
+                                          description="",
+                                          language="nl")
+            f_nl = getattr(site, folder['nl']['id'])
+            portal_workflow.doActionFor(f_nl,'publish')
+            f_nl.addTranslationReference(f_fr)
+            
         logger = context.getLogger("Novac")
         logger.info('end install Novac')
