@@ -29,7 +29,7 @@ def setupNovac(context):
         
         site.invokeFactory(type_name='Folder', 
                                       id=NOVACNL,
-                                      title="NL Permis d'urbanisme",
+                                      title="Stedenbouwkundige vergunning",
                                       description="",
                                       language="nl")
         novac_nl = getattr(site, NOVACNL)
