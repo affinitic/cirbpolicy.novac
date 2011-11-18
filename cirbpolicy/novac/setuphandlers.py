@@ -3,6 +3,7 @@ from zope.interface import alsoProvides
 from Products.CMFPlone.interfaces import IHideFromBreadcrumbs
 from cirb.novac.browser.novacview import INovacView
 import os
+from Products.CAS4PAS.CASAuthHelper import addCASAuthHelper 
 
 def get_package_path():
     from cirb.novac import config
@@ -17,6 +18,9 @@ def setupNovac(context):
     
     NOVAC="novac"
     NOVACNL="novac_nl"
+    
+    add_cas(context)
+    
     if not site.hasObject(NOVAC):
         site.invokeFactory(type_name='Folder', 
                                    id=NOVAC,
@@ -59,12 +63,15 @@ def setupNovac(context):
 
         news = site.news
         news.setExcludeFromNav(True)
+        news.reindexObject()
         
         events = site.events
         events.setExcludeFromNav(True)
+        events.reindexObject()
         
         Members = site.Members
         Members.setExcludeFromNav(True)
+        Members.reindexObject()
         
         for folder in folders:            
             site.invokeFactory(type_name='Folder', 
@@ -86,3 +93,40 @@ def setupNovac(context):
             
         logger = context.getLogger("Novac")
         logger.info('end install Novac')
+
+
+def add_cas(context):
+    site = context.getSite()
+    name = "CASAuthHelper"
+    if not name in site.acl_users.keys():
+        addCASAuthHelper(site.acl_users,name)
+        
+        cah = site.acl_users.CASAuthHelper
+        #cah.manage_changeProperties(login_url='https://sso.irisnetlab.be/cas/login',
+        #            logout_url='https://sso.irisnetlab.be/cas/logout',
+        #            validate_url='https://sso.irisnetlab.be/cas/validate')
+        #validate_url = 'https://sso.irisnetlab.be/cas/validate'
+        validate_url = 'https://sso.irisnetlab.be/cas/serviceValidate'
+        cah.manage_changeProperties(login_url='https://sso.irisnetlab.be/cas/login',
+                    logout_url='https://sso.irisnetlab.be/cas/logout',
+                    validate_url=validate_url)
+    
+        cah.manage_activateInterfaces(['IAuthenticationPlugin', 
+                                       'IChallengePlugin', 
+                                       'ICredentialsResetPlugin',
+                                       'IExtractionPlugin'])
+        
+        #cah.plugins.movePluginsUp(cah.plugins._getInterfaceFromName('IAuthenticationPlugin'),['CASAuthHelper'])
+        movePluginsTop(cah, 'IAuthenticationPlugin','CASAuthHelper')
+        movePluginsTop(cah, 'IChallengePlugin','CASAuthHelper')
+        movePluginsTop(cah, 'ICredentialsResetPlugin','CASAuthHelper')
+        movePluginsTop(cah, 'IExtractionPlugin','CASAuthHelper')
+        
+        logger = context.getLogger("CASAuthHelper")
+        logger.info('end install CASAuthHelper')
+
+def movePluginsTop(acl, plugins_name, id_to_move):
+    plugin_type = acl.plugins._getInterfaceFromName(plugins_name)
+    while acl.plugins.listPlugins(plugin_type)[0][0] != id_to_move:
+        #acl.plugins.movePluginsUp(plugin_type, [ids_to_move,])
+        acl.plugins.movePluginsUp(plugin_type,[id_to_move])

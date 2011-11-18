@@ -19,12 +19,20 @@
       description="A policy for the nova citoyen plone module"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-  
+      
+  <genericsetup:upgradeStep
+          title="cirbpolicy.novac: Upgrade Policy: upgrade plone 3.3.5 to plone 4.1.2"
+          description="Upgrade plone 3.3.5 to plone 4.1.2"
+          handler=".upgradehandlers.upToFourOneTwo"
+          source="1"
+          destination="2"
+          profile="cirbpolicy.novac:default"
+          />
   <!-- -*- extra stuff goes here -*- -->
 
 
   <include package="Products.LinguaPlone" />
-  <include package="cirb.cas" />
+  <!--include package="cirb.cas" /-->
   <include package="cirb.urbis" />
   <include package="cirb.novac" />
   <include package="plonetheme.urbanisme" />
