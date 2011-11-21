@@ -32,7 +32,7 @@
 
 
   <include package="Products.LinguaPlone" />
-  <!--include package="cirb.cas" /-->
+  <include package="cirb.cas" />
   <include package="cirb.urbis" />
   <include package="cirb.novac" />
   <include package="plonetheme.urbanisme" />

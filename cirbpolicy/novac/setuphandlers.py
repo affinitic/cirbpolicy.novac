@@ -19,7 +19,7 @@ def setupNovac(context):
     NOVAC="novac"
     NOVACNL="novac_nl"
     
-    add_cas(context)
+    #add_cas(context)
     
     if not site.hasObject(NOVAC):
         site.invokeFactory(type_name='Folder', 

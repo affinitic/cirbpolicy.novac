@@ -9,4 +9,4 @@ def upToFourOneTwo(context):
     portal_migration.upgrade()
     log.info("Ran Plone Upgrade")
     
-    # migrate blob ?
+    # clean danny's changes
