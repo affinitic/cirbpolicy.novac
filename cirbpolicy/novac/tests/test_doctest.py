@@ -6,7 +6,7 @@ import doctest
 
 from Testing import ZopeTestCase as ztc
 
-from cirb.novacwaws.tests import base
+from cirbpolicy.novac.tests import base
 
 
 def test_suite():

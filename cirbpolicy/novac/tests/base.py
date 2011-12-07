@@ -36,8 +36,8 @@ def setup_product():
     # This can of course use <include /> to include other packages.
 
     fiveconfigure.debug_mode = True
-    import cirb.novacwaws
-    zcml.load_config('configure.zcml', cirb.novacwaws)
+    import cirbpolicy.novac
+    zcml.load_config('configure.zcml', cirbpolicy.novac)
     fiveconfigure.debug_mode = False
 
     # We need to tell the testing framework that these products
@@ -51,14 +51,14 @@ def setup_product():
     # We may also need to load dependencies, e.g.:
     #   ztc.installPackage('borg.localrole')
 
-    ztc.installPackage('cirb.novacwaws')
+    ztc.installPackage('cirbpolicy.novac')
 
 # The order here is important: We first call the (deferred) function
 # which installs the products we need for this product. Then, we let
 # PloneTestCase set up this product on installation.
 
 setup_product()
-ptc.setupPloneSite(products=['cirb.novacwaws'])
+ptc.setupPloneSite(products=['cirbpolicy.novac'])
 
 
 class TestCase(ptc.PloneTestCase):
