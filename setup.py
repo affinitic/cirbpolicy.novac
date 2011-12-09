@@ -34,7 +34,7 @@ setup(name='cirbpolicy.novac',
       install_requires=['setuptools',
                         # -*- Extra requirements: -*-
                         'Products.LinguaPlone>4',
-                        'cirb.cas',
+                        #'cirb.cas',
                         'Products.CAS4PAS',
                         'cirb.urbis',
                         'cirb.novac',

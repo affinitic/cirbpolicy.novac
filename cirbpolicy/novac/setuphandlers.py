@@ -16,10 +16,10 @@ def setupNovac(context):
     if context.readDataFile('cirb.novac_various.txt') is None:
         return
     
-    NOVAC="novac"
-    NOVACNL="novac_nl"
+    NOVAC="permis-d-urbanisme"
+    NOVACNL="stedenbouwkundige-vergunning"
     
-    #add_cas(context)
+    add_cas(context)
     
     if not site.hasObject(NOVAC):
         site.invokeFactory(type_name='Folder', 
@@ -106,21 +106,25 @@ def add_cas(context):
         #            logout_url='https://sso.irisnetlab.be/cas/logout',
         #            validate_url='https://sso.irisnetlab.be/cas/validate')
         #validate_url = 'https://sso.irisnetlab.be/cas/validate'
-        validate_url = 'https://sso.irisnetlab.be/cas/serviceValidate'
-        cah.manage_changeProperties(login_url='https://sso.irisnetlab.be/cas/login',
-                    logout_url='https://sso.irisnetlab.be/cas/logout',
+        domain = 'https://192.168.13.71:443/'
+        #domain = 'https://sso.irisnetlab.be/'
+        validate_url = '%scas/serviceValidate' % domain
+        cah.manage_changeProperties(login_url='%scas/login' % domain,
+                    logout_url='%scas/logout' % domain,
                     validate_url=validate_url)
     
         cah.manage_activateInterfaces(['IAuthenticationPlugin', 
                                        'IChallengePlugin', 
                                        'ICredentialsResetPlugin',
-                                       'IExtractionPlugin'])
+                                       'IExtractionPlugin', 
+                                       'IPropertiesPlugin'])
         
         #cah.plugins.movePluginsUp(cah.plugins._getInterfaceFromName('IAuthenticationPlugin'),['CASAuthHelper'])
         movePluginsTop(cah, 'IAuthenticationPlugin','CASAuthHelper')
         movePluginsTop(cah, 'IChallengePlugin','CASAuthHelper')
         movePluginsTop(cah, 'ICredentialsResetPlugin','CASAuthHelper')
         movePluginsTop(cah, 'IExtractionPlugin','CASAuthHelper')
+        
         
         logger = context.getLogger("CASAuthHelper")
         logger.info('end install CASAuthHelper')
