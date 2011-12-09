@@ -16,9 +16,10 @@ def setupNovac(context):
     if context.readDataFile('cirb.novac_various.txt') is None:
         return
     
-    NOVAC="permis-d-urbanisme"
-    NOVACNL="stedenbouwkundige-vergunning"
-    
+    #NOVAC="permis-d-urbanisme"
+    #NOVACNL="stedenbouwkundige-vergunning"
+    NOVAC="novac"
+    NOVACNL="novac-nl"
     add_cas(context)
     
     if not site.hasObject(NOVAC):
@@ -117,7 +118,8 @@ def add_cas(context):
                                        'IChallengePlugin', 
                                        'ICredentialsResetPlugin',
                                        'IExtractionPlugin', 
-                                       'IPropertiesPlugin'])
+                                       #'IPropertiesPlugin'
+                                       ])
         
         #cah.plugins.movePluginsUp(cah.plugins._getInterfaceFromName('IAuthenticationPlugin'),['CASAuthHelper'])
         movePluginsTop(cah, 'IAuthenticationPlugin','CASAuthHelper')
