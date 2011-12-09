@@ -125,6 +125,7 @@ def add_cas(context):
         movePluginsTop(cah, 'IChallengePlugin','CASAuthHelper')
         movePluginsTop(cah, 'ICredentialsResetPlugin','CASAuthHelper')
         movePluginsTop(cah, 'IExtractionPlugin','CASAuthHelper')
+        movePluginsTop(cah, 'IPropertiesPlugin','CASAuthHelper')
         
         
         logger = context.getLogger("CASAuthHelper")
