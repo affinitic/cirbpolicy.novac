@@ -117,10 +117,8 @@ def add_cas(context):
         cah.manage_activateInterfaces(['IAuthenticationPlugin', 
                                        'IChallengePlugin', 
                                        'ICredentialsResetPlugin',
-                                       'IExtractionPlugin', 
-                                       #'IPropertiesPlugin'
-                                       ])
-        
+                                       'IExtractionPlugin'])
+        #'IPropertiesPlugin'
         #cah.plugins.movePluginsUp(cah.plugins._getInterfaceFromName('IAuthenticationPlugin'),['CASAuthHelper'])
         movePluginsTop(cah, 'IAuthenticationPlugin','CASAuthHelper')
         movePluginsTop(cah, 'IChallengePlugin','CASAuthHelper')
