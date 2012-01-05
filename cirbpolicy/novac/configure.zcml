@@ -38,5 +38,6 @@
   <include package="plonetheme.urbanisme" />
   <include package="cirb.footersitemap" />
   <include package="Products.Collage" />
+  <include package="plone.app.registry" />
 
 </configure>

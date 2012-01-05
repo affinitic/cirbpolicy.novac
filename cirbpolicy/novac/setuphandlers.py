@@ -5,6 +5,8 @@ from cirb.novac.browser.novacview import INovacView
 import os
 from Products.CAS4PAS.CASAuthHelper import addCASAuthHelper 
 
+from plone.app.layout.navigation.interfaces import INavigationRoot
+
 def get_package_path():
     from cirb.novac import config
     return os.path.dirname(config.__file__)
@@ -18,26 +20,35 @@ def setupNovac(context):
     
     #NOVAC="permis-d-urbanisme"
     #NOVACNL="stedenbouwkundige-vergunning"
-    NOVAC="novac"
-    NOVACNL="novac-nl"
+    NOVAC="permis"
+    NOVACNL="vergunningen"
     add_cas(context)
     
     if not site.hasObject(NOVAC):
-        site.invokeFactory(type_name='Folder', 
+        if not site.hasObject("fr"):
+            fr = create_folder(site, 'fr')
+        else:
+            fr = site.fr
+        fr.invokeFactory(type_name='Folder', 
                                    id=NOVAC,
                                    title="Permis d'urbanisme",
                                    description="",
                                    language="fr")
-        novac = getattr(site, NOVAC)
+        novac = getattr(fr, NOVAC)
         alsoProvides(novac, INovacView)
         portal_workflow.doActionFor(novac,'publish')
         
-        site.invokeFactory(type_name='Folder', 
+        if not site.hasObject("fr"):
+            nl = create_folder(site, 'nl')
+            nl.addTranslationReference(fr)
+        else:
+            nl = site.fr   
+        nl.invokeFactory(type_name='Folder', 
                                       id=NOVACNL,
                                       title="Stedenbouwkundige vergunning",
                                       description="",
                                       language="nl")
-        novac_nl = getattr(site, NOVACNL)
+        novac_nl = getattr(nl, NOVACNL)
         alsoProvides(novac_nl, INovacView)
         portal_workflow.doActionFor(novac_nl,'publish')
         novac_nl.addTranslationReference(novac)
@@ -56,12 +67,13 @@ def setupNovac(context):
             my_img = getattr(img,filename)
             my_img.setImage(imgfile)
         """
+        """
         folders = [{'fr':{'id':'lesreglesdujeu','name':'Les regles du jeu'},'nl':{'id':'spelregels','name':'Spelregels'}},
                    {'fr':{'id':'quisommesnous','name':'Qui sommes-nous ?'},'nl':{'id':'wiezijnwij','name':'Wie zijn wij?'}},
                    {'fr':{'id':'cartographie','name':'Cartographie'},'nl':{'id':'cartografie','name':'Cartografie'}},
                    {'fr':{'id':'publications','name':'Etudes et Publications'},'nl':{'id':'publicaties','name':'Studies en publicaties'}}
                 ]
-
+        """
         news = site.news
         news.setExcludeFromNav(True)
         news.reindexObject()
@@ -74,6 +86,7 @@ def setupNovac(context):
         Members.setExcludeFromNav(True)
         Members.reindexObject()
         
+        """
         for folder in folders:            
             site.invokeFactory(type_name='Folder', 
                                        id=folder['fr']['id'],
@@ -91,11 +104,22 @@ def setupNovac(context):
             f_nl = getattr(site, folder['nl']['id'])
             portal_workflow.doActionFor(f_nl,'publish')
             f_nl.addTranslationReference(f_fr)
-            
+        """    
         logger = context.getLogger("Novac")
         logger.info('end install Novac')
 
-
+def create_lang_folder(folder, lang):
+    folder.invokeFactory(type_name='Folder', 
+                               id=lang,
+                               title=lang,
+                               description="",
+                               language=lang)
+    langfolder = getattr(folder, lang)
+    alsoProvides(langfolder, INavigationRoot)
+    portal_workflow.doActionFor(langfolder,'publish')
+    return langfolder
+        
+    
 def add_cas(context):
     site = context.getSite()
     name = "CASAuthHelper"

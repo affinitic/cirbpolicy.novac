@@ -2,7 +2,8 @@
 <metadata>
   <version>1.0</version>
   <dependencies>
-	<dependency>profile-Products.LinguaPlone:LinguaPlone</dependency>
+	<dependency>profile-Products.LinguaPlone:LinguaPlone</dependency>	
+	<dependency>profile-plone.app.registry:default</dependency>
 	<!--dependency>profile-cirb.cas:default</dependency-->
 	<dependency>profile-cirb.urbis:default</dependency>
 	<dependency>profile-cirb.novac:default</dependency>
