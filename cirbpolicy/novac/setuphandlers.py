@@ -35,6 +35,7 @@ def setupNovac(context):
                                    description="",
                                    language="fr")
         novac = getattr(fr, NOVAC)
+        novac.setExcludeFromNav(True)
         alsoProvides(novac, INovacView)
         portal_workflow.doActionFor(novac,'publish')
         
@@ -49,6 +50,7 @@ def setupNovac(context):
                                       description="",
                                       language="nl")
         novac_nl = getattr(nl, NOVACNL)
+        novac_nl.setExcludeFromNav(True)
         alsoProvides(novac_nl, INovacView)
         portal_workflow.doActionFor(novac_nl,'publish')
         novac_nl.addTranslationReference(novac)
