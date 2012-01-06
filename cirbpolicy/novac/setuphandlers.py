@@ -42,7 +42,7 @@ def setupNovac(context):
             nl = create_lang_folder(site, 'nl', portal_workflow)
             nl.addTranslationReference(fr)
         else:
-            nl = site.fr   
+            nl = site.nl   
         nl.invokeFactory(type_name='Folder', 
                                       id=NOVACNL,
                                       title="Stedenbouwkundige vergunning",
