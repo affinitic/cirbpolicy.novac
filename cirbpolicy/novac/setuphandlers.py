@@ -26,7 +26,7 @@ def setupNovac(context):
     
     if not site.hasObject(NOVAC):
         if not site.hasObject("fr"):
-            fr = create_folder(site, 'fr')
+            fr = create_lang_folder(site, 'fr', portal_workflow)
         else:
             fr = site.fr
         fr.invokeFactory(type_name='Folder', 
@@ -39,7 +39,7 @@ def setupNovac(context):
         portal_workflow.doActionFor(novac,'publish')
         
         if not site.hasObject("fr"):
-            nl = create_folder(site, 'nl')
+            nl = create_lang_folder(site, 'nl', portal_workflow)
             nl.addTranslationReference(fr)
         else:
             nl = site.fr   
@@ -108,7 +108,7 @@ def setupNovac(context):
         logger = context.getLogger("Novac")
         logger.info('end install Novac')
 
-def create_lang_folder(folder, lang):
+def create_lang_folder(folder, lang, portal_workflow):
     folder.invokeFactory(type_name='Folder', 
                                id=lang,
                                title=lang,
