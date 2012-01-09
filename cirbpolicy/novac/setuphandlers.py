@@ -29,7 +29,7 @@ def setupNovac(context):
     NOVAC="permis"
     NOVACNL="vergunningen"
     add_cas(context)
-    makeHomeRedirect(site)
+    #make_home_redirect(site)
     if not site.hasObject(NOVAC):
         if not site.hasObject("fr"):
             fr = create_lang_folder(site, 'fr', portal_workflow)
@@ -129,7 +129,7 @@ def create_lang_folder(folder, lang, portal_workflow):
     return langfolder
         
         
-def makeHomeRedirect(portal):
+def make_home_redirect(portal):
     if not portal.hasObject('index_html'):
         manage_addPythonScript(portal, 'index_html')
         script = portal.index_html
