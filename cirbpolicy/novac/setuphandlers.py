@@ -46,7 +46,7 @@ def setupNovac(context):
             alsoProvides(novac, INovacView)
             portal_workflow.doActionFor(novac,'publish')
             
-            if not site.hasObject("fr"):
+            if not site.hasObject("nl"):
                 nl = create_lang_folder(site, 'nl', portal_workflow)
                 nl.addTranslationReference(fr)
             else:
