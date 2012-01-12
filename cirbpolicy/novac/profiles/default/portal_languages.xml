@@ -3,12 +3,15 @@
  <default_language value="fr"/>
  <use_path_negotiation value="False"/>
  <use_cookie_negotiation value="True"/>
- <use_content_negotiation value="False"/>
+ <set_cookie_everywhere value="True"/>
  <use_request_negotiation value="True"/>
- <use_cctld_negotiation value="False"/>
+ <use_cctld_negotiation value="True"/>
+ <use_content_negotiation value="True"/>
  <use_combined_language_codes value="False"/>
  <display_flags value="False"/>
  <start_neutral value="False"/>
+ <use_subdomain_negotiation value="False"/>
+ <authenticated_users_only value="False"/>
  <supported_langs>
   <element value="nl"/>
   <element value="fr"/>
