@@ -39,5 +39,6 @@
   <include package="cirb.footersitemap" />
   <include package="Products.Collage" />
   <include package="plone.app.registry" />
+  <includeOverrides package="cirb.novac" file="overrides.zcml"/>
 
 </configure>
