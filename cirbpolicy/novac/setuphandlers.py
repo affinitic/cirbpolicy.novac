@@ -148,7 +148,8 @@ def add_cas(context):
         #            validate_url='https://sso.irisnetlab.be/cas/validate')
         #validate_url = 'https://sso.irisnetlab.be/cas/validate'
         #domain = 'https://192.168.13.71:443/'
-        domain = 'https://sso.irisnetlab.be/'
+        #domain = 'https://sso.irisnetlab.be/'
+        domain = 'https://sso.irisnet.be/'
         validate_url = '%scas/serviceValidate' % domain
         cah.manage_changeProperties(login_url='%scas/login' % domain,
                     logout_url='%scas/logout' % domain,
