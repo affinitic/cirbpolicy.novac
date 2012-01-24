@@ -5,7 +5,7 @@ This module contains the tool of cirb.novacwaws
 import os
 from setuptools import setup, find_packages
 
-version = '1.1'
+version = '1.2dev'
 
 tests_require = ['zope.testing']
 
