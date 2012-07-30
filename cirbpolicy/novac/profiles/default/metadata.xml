@@ -10,5 +10,6 @@
 	<dependency>profile-plonetheme.urbanisme:default</dependency>
 	<dependency>profile-cirb.footersitemap:default</dependency>
 	<dependency>profile-Products.Collage:default</dependency>
+	<dependency>profile-Products.PloneFormGen:default</dependency>
   </dependencies>
 </metadata>
