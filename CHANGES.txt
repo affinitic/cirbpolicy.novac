@@ -5,6 +5,7 @@ Changelog
 ----------------
 
 - add ploneformgen in metadata.
+- add collective.recaptcha in setup.py.
 
 
 1.4 (2012-02-07)

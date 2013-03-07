@@ -41,4 +41,6 @@
   <include package="plone.app.registry" />
   <includeOverrides package="cirb.novac" file="overrides.zcml"/>
 
+  <include package="collective.recaptcha" />
+
 </configure>
