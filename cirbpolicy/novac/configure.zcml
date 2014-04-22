@@ -35,10 +35,12 @@
   <!--include package="cirb.cas" /-->
   <include package="cirb.urbis" />
   <include package="cirb.novac" />
-  <include package="plonetheme.urbanisme" />
+  <!--include package="plonetheme.novac" /-->
+  <!--include package="plonetheme.urbanisme" /-->
   <include package="cirb.footersitemap" />
   <include package="Products.Collage" />
   <include package="plone.app.registry" />
+  <include package="collective.easyslider" />
   <includeOverrides package="cirb.novac" file="overrides.zcml"/>
 
   <include package="collective.recaptcha" />

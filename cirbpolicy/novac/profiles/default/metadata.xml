@@ -7,9 +7,11 @@
 	<!--dependency>profile-cirb.cas:default</dependency-->
 	<dependency>profile-cirb.urbis:default</dependency>
 	<dependency>profile-cirb.novac:default</dependency>
-	<dependency>profile-plonetheme.urbanisme:default</dependency>
+	<!--dependency>profile-plonetheme.urbanisme:default</dependency-->
+    <!--dependency>profile-plonetheme.novac:default</dependency-->
 	<dependency>profile-cirb.footersitemap:default</dependency>
 	<dependency>profile-Products.Collage:default</dependency>
 	<dependency>profile-Products.PloneFormGen:default</dependency>
+    <dependency>profile-collective.easyslider:default</dependency>
   </dependencies>
 </metadata>
